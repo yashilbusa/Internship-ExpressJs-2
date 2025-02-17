@@ -7,7 +7,7 @@ const port = 3012
 
 try{
     const connection = await mongoose.connect("mongodb://localhost:27017/todolist");
-    console.log("Database Connected");
+    console.log("Database Connected!!!");
 } catch(err){
     console.log(err.messsage);
 }
@@ -21,4 +21,3 @@ app.get("/", async(req,res)=>{
 app.listen(port,()=>{
     console.log(`Server is Running on http://localhost:${port}`);
 })
-
