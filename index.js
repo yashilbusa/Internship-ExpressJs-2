@@ -1,6 +1,5 @@
 import express from 'express';
 import mongoose, { mongo } from 'mongoose';
-import dotenv from 'dotenv'
 import { config } from 'dotenv'
 import { Todo } from './models/Todo.js'
 
