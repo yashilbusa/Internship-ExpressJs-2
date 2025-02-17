@@ -7,9 +7,9 @@ const port = 3012
 
 const connection = await mongoose.connect("mongodb://localhost:27017/todolist");
 
-app.get("/",(req,res)=>{
-    const todo = new Todo({title:"Mongoose", desc:"Mongoose Package is Good",isDone:true})
-    todo.save()
+app.get("/", async(req,res)=>{
+    const todo = new Todo({title:"Mongoose", desc:"Mongoose Package is Good", isDone:false})
+    await todo.save()
     res.send("Hello World");
 })
 
