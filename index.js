@@ -5,7 +5,12 @@ import { Todo } from './models/Todo.js'
 const app = express()
 const port = 3012
 
-const connection = await mongoose.connect("mongodb://localhost:27017/todolist");
+try{
+    const connection = await mongoose.connect("mongodb://localhost:27017/todolist");
+    console.log("Database Connected");
+} catch(err){
+    console.log(err.messsage);
+}
 
 app.get("/", async(req,res)=>{
     const todo = new Todo({title:"Mongoose", desc:"Mongoose Package is Good", isDone:false})
