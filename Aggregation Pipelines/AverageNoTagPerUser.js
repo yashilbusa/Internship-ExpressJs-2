@@ -26,9 +26,7 @@ db.test.aggregate([
       '$addFields': {
         'NumberOfTags': {
           '$size': {
-            '$ifNull': [
-              '$tags', []
-            ]
+            '$ifNull': ['$tags', []]
           }
         }
       }
