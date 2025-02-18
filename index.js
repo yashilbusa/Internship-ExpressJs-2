@@ -35,11 +35,24 @@ const url = "https://jsonplaceholder.typicode.com/todos/"
 
 app.get("/",(req,res)=>{
     res.send("TodoList");
+    for (const data of todosData) {
+        console.log(data);
+    }
 })
 
 app.post("/addTask",async(req,res)=>{
-    const todo = await fetch(url)
-    await todo.save()
+    const response = await fetch(url)
+    const todosData = await response.json(); 
+
+    for(let i=0;i<10;i++){
+        const newTodo = new Todo({
+            userId: todosData[i].userId,
+            id: todosData[i].id,
+            title: todosData[i].title,
+            completed: todosData[i].completed
+        });
+        await newTodo.save()
+    }
 })
 
 app.put("/updateTask/:id",async(req,res)=>{
