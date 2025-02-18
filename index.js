@@ -70,5 +70,3 @@ app.delete("/delete/:id", async(req,res)=>{
     await Todo.findByIdAndDelete(id);
     res.send({ message: 'Todo deleted' });
 })
-
-app.delete
