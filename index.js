@@ -38,10 +38,10 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/:id",async(req,res)=>{
-    const id = req.params.id;
-    const response = await fetch(`url/${id}`)
-    const todosData = await response.json(); 
-    res.send(todosData);
+    const dataid = req.params.id;
+    const todoData = Todo.findOne({id:dataid})
+    const jsonData = await todoData.json();
+    res.send(jsonData);
 })
 
 app.post("/addTask",async(req,res)=>{
