@@ -18,3 +18,26 @@ db.test.aggregate([
       }
     }
 ])
+
+
+//2nd Method
+db.test.aggregate([
+    {
+      '$addFields': {
+        'NumberOfTags': {
+          '$size': {
+            '$ifNull': [
+              '$tags', []
+            ]
+          }
+        }
+      }
+    }, {
+      '$group': {
+        '_id': null, 
+        'AverageNoOfTags': {
+          '$avg': '$NumberOfTags'
+        }
+      }
+    }
+])
