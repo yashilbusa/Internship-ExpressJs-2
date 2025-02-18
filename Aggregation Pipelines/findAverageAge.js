@@ -1,3 +1,4 @@
+//Find Average group by Gender
 db.test.aggregate([
     {
       '$group': {
@@ -7,4 +8,17 @@ db.test.aggregate([
         }
       }
     }
+])
+
+
+//Find Simple average based on age
+db.test.aggregate([
+  {
+    '$group': {
+      '_id': null, 
+      'averageAge': {
+        '$avg': '$age'
+      }
+    }
+  }
 ])
