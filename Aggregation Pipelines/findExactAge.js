@@ -1,15 +1,10 @@
-// Find Age Count Between 21 and 25 (22,23,24) using '$gt' and '$lt'
+//Find Exact age to 35 and its count using '$eq'
 db.test.aggregate([
     {
       '$match': {
+        'gender': 'male', 
         'age': {
-          '$gt': 21
-        }
-      }
-    }, {
-      '$match': {
-        'age': {
-          '$lt': 25
+          '$eq': 35
         }
       }
     }, {
