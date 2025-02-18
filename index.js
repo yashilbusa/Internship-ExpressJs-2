@@ -35,9 +35,6 @@ const url = "https://jsonplaceholder.typicode.com/todos/"
 
 app.get("/",(req,res)=>{
     res.send("TodoList");
-    for (const data of todosData) {
-        console.log(data);
-    }
 })
 
 app.post("/addTask",async(req,res)=>{
