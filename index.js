@@ -68,4 +68,7 @@ app.put("/updateTask/:id",async(req,res)=>{
 app.delete("/delete/:id", async(req,res)=>{
     const id = req.params.id;
     await Todo.findByIdAndDelete(id);
+    res.send({ message: 'Todo deleted' });
 })
+
+app.delete
