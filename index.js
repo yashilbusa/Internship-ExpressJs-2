@@ -32,12 +32,13 @@ try {
     console.error('Error connecting to MongoDB:', error.message);
 }
 
+const url = "https://jsonplaceholder.typicode.com/todos"
 app.get("/",(req,res)=>{
     res.send("TodoList");
 })
 
 app.post("/addTask",async(req,res)=>{
-    const todo = new Todo({title:"Mongoose", desc:"Mongoose Package is Good", isDone:false})
+    const todo = await fetch(url)
     await todo.save()
 })
 
