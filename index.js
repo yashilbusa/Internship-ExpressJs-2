@@ -31,10 +31,17 @@ app.listen(port,()=>{
 //     console.error('Error connecting to MongoDB:', error.message);
 // }
 
-const url = "https://jsonplaceholder.typicode.com/todos/"
+const url = "https://jsonplaceholder.typicode.com/todos"
 
 app.get("/",(req,res)=>{
     res.send("TodoList");
+})
+
+app.get("/:id",async(req,res)=>{
+    const id = req.params.id;
+    const response = await fetch(`url/${id}`)
+    const todosData = await response.json(); 
+    res.send(todosData);
 })
 
 app.post("/addTask",async(req,res)=>{
