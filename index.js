@@ -33,9 +33,9 @@ app.listen(port,()=>{
 
 const url = "https://jsonplaceholder.typicode.com/todos"
 
-app.get("/",(req,res)=>{
-    res.send("TodoList");
-})
+// app.get("/",(req,res)=>{
+//     res.send("TodoList");
+// })
 
 app.get("/:id", async (req, res) => {
     try {
@@ -65,18 +65,18 @@ app.post("/addTask",async(req,res)=>{
     }
 })
 
-app.put("/updateTask/:id",async(req,res)=>{
-    const id = req.params.id;
-    const updatedData = req.body; 
-    await Todo.findByIdAndUpdate(id, updatedData);
+app.put("/update/:id", async(req,res)=>{
+    const Uid = req.params.id;
+    const updatedData = req.body;
+    await Todo.updateOne({id:Uid},{$set:updatedData});
 })
 
 app.delete("/delete/:id", async(req,res)=>{
-    const id = req.params.id;
-    await Todo.findByIdAndDelete(id);
+    const Did = req.params.id;
+    await Todo.deleteOne({ id: Did });
 })
 
-app.get("/getAll", async (req,res) => {
+app.get("/", async (req,res) => {
     try {
         const data = await Todo.find();
         res.send(data);
