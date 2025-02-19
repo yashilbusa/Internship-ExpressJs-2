@@ -37,12 +37,18 @@ app.get("/",(req,res)=>{
     res.send("TodoList");
 })
 
-app.get("/:id",async(req,res)=>{
-    const dataid = req.params.id;
-    const todoData = Todo.findOne({id:dataid})
-    const jsonData = await todoData.json();
-    res.send(jsonData);
-})
+app.get("/:id", async (req, res) => {
+    try {
+        const dataid = req.params.id;
+        const todoData = await Todo.findOne({ id: dataid });
+        if (!todoData) {
+            return res.status(404).send({ message: "Todo not found" });
+        }
+        res.send(todoData);
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+});
 
 app.post("/addTask",async(req,res)=>{
     const response = await fetch(url)
@@ -69,3 +75,12 @@ app.delete("/delete/:id", async(req,res)=>{
     const id = req.params.id;
     await Todo.findByIdAndDelete(id);
 })
+
+app.get("/getAll", async (req, res) => {
+    try {
+        const data = await Todo.find();
+        res.send(data);
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+});
