@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose, { mongo } from 'mongoose';
 import { config } from 'dotenv'
 import { Todo } from './models/Todo.js'
+import { StudentData } from './models/Student.js';
 
 const app = express()
 const port = 3012
@@ -10,7 +11,8 @@ config();
 
 app.use(express.json())
 try{
-    const connection = await mongoose.connect("mongodb://localhost:27017/todolist");
+    // const connection = await mongoose.connect("mongodb://localhost:27017/todolist");
+    const connection = await mongoose.connect("mongodb://localhost:27017/Student");
     console.log("Database Connected!!!");
 } catch(err){
     console.log(err.messsage);
