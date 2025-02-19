@@ -76,7 +76,7 @@ app.delete("/delete/:id", async(req,res)=>{
     await Todo.findByIdAndDelete(id);
 })
 
-app.get("/getAll", async (req, res) => {
+app.get("/getAll", async (req,res) => {
     try {
         const data = await Todo.find();
         res.send(data);
