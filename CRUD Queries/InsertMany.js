@@ -1,6 +1,6 @@
 use('todolist');
 
-db.todos.insertOne([
+db.todos.insertMany([
     {
         userId: 1,
         id: 1,
